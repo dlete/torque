@@ -1,0 +1,193 @@
+
+def audit_jnpr_duplicate_ip(address_ip, os_username, os_password):
+    ''' Return a list of test results for duplicate IP addresses
+
+    Args:
+        address_ip (str)
+        os_username (str)
+        os_password (str)
+
+    Returns:
+        list: each item in the list is a line of text. Each line of text begins
+        with either of the keywords: PASS, FAIL, or WARNING. These first
+        keywords are always in capital letters.
+
+    Requires:
+        Python 3.5.2 (or higher)
+        junos-eznc 2.1.3 (or higher)
+
+    To-do:
+        Include UNI links
+        Modify so that the function allows to check for an individual prefix.
+    '''
+
+    ''' Here we only sets/not logging '''
+    import logging
+    logger = logging.getLogger(__name__)
+    # Set to INFO if you do WANT to see DEBUG and INFO messages.
+    # Set to WARNING if you do NOT WANT to see DEBUG and INFO messages.
+    logging.basicConfig(level=logging.WARNING)
+
+
+    ''' Initialize, empty, the list that this function will return. '''
+    list_report = []
+
+
+    ''' Import Juniper package junos-eznc and open Netconf session to the NE.'''
+    from jnpr.junos import Device
+    try:
+        Device.auto_probe = 5
+        device = Device(
+            host=address_ip, 
+            user=os_username, 
+            password=os_password, 
+            gather_facts=False,
+            normalize=True)
+        device.open()
+    except Exception as err:
+        list_report.append("WARNING, the following error has happened: " + str(err))
+        return list_report
+
+
+    ''' The Juniper does return the information in XML (C'est la vie!). '''
+    from lxml import etree
+
+    ''' We will put all the NE, IPv4 and Direct, prefixes in a list.'''
+    prefixes_ipv4_ne = []
+    route_direct_inet_0 = device.rpc.get_route_information(table='inet.0', protocol='direct')
+    for element in route_direct_inet_0.findall('.//rt-destination'):
+        logger.info('rt-destination is: %s', element.text)
+        prefixes_ipv4_ne.append(element.text)
+    logger.info('These are all the IPv4 Direct prefixes in the NE: %s', prefixes_ipv4_ne)
+
+    ''' We will put all the NE, IPv6 and Direct, prefixes in a list.'''
+    prefixes_ipv6_ne = []
+    route_direct_inet_6_0 = device.rpc.get_route_information(table='inet6.0', protocol='direct')
+    for element in route_direct_inet_6_0.findall('.//rt-destination'):
+        logger.info('rt-destination is: %s', element.text)
+        if '2001:770' in element.text:
+            prefixes_ipv6_ne.append(element.text)
+    logger.info('These are all the IPv6 Direct prefixes in the NE: %s', prefixes_ipv6_ne)
+
+
+    prefixes_ipv4_database = []
+    prefixes_ipv6_database = []
+    isis_database_extensive = device.rpc.get_isis_database_information(extensive=True)
+    #print(etree.tostring(isis_database_extensive, encoding='unicode'))
+    for element in isis_database_extensive.findall('.//isis-database-entry'):
+        lsp_id = element.find('.//lsp-id').text
+        logger.info('lsp-id is: %s', lsp_id)
+
+        for sub in element.findall('.//isis-prefix'):
+            protocol_name = sub.find('.//protocol-name').text
+            logger.info('protocol-name is: %s', protocol_name)
+            address_prefix = sub.find('.//address-prefix').text
+            logger.info('address_prefix is: %s', address_prefix)
+            prefix_flag = sub.find('.//prefix-flag').text
+            prefix_status = sub.find('.//prefix-status').text
+            if protocol_name == 'IP':
+                prefixes_ipv4_database.append(address_prefix)
+            if protocol_name == 'V6':
+                prefixes_ipv6_database.append(address_prefix)
+
+    logger.info('these are the IPv4 prefixes in the database: %s', prefixes_ipv4_database)
+    logger.info('these are the IPv6 prefixes in the database: %s', prefixes_ipv6_database)
+
+    logger.info('prefixes_ipv4_ne has this number of entries: %s', len(prefixes_ipv4_ne))
+    facility_ipv4 = [ '87.44.49.254/32' ]
+    for ip_prefix in prefixes_ipv4_ne:
+        instances = prefixes_ipv4_database.count(ip_prefix)
+        logger.info('this prefix is this many times in the database: %s', instances)
+
+        if ip_prefix in facility_ipv4:
+            pass
+        elif '/32' in ip_prefix:
+            logger.info('this prefix is a /32: %s', ip_prefix)
+            if instances == 1:
+                list_report.append("PASS, prefix " + ip_prefix + " is correct. It is once (" + str(instances) + ") in the database.")
+            else:
+                list_report.append("FAIL, prefix " + ip_prefix + " is incorrect. It is " + str(instances) + " times in the database.")
+        elif '/31' in ip_prefix:
+            logger.info('this prefix is a /31: %s', ip_prefix)
+            if instances == 2:
+                list_report.append("PASS, prefix " + ip_prefix + " is correct. It is twice (" + str(instances) + ") in the database.")
+            elif instances == 0:
+                logger.info('This prefix appears 0 times in the database, most probably is a UNI: %s', ip_prefix)
+                pass
+            else:
+                list_report.append("FAIL, prefix " + ip_prefix + " is incorrect. It is " + str(instances) + " times in the database.")
+        else:
+            pass
+
+
+    logger.info('prefixes_ipv6_ne has this number of entries: %s', len(prefixes_ipv6_ne))
+    facility_ipv6 = [ '2001:770:200:0:ffff:ffff:ffff:ffff/128' ]
+    for ip_prefix in prefixes_ipv6_ne:
+        instances = prefixes_ipv6_database.count(ip_prefix)
+        logger.info('this prefix is this many times in the database: %s', instances)
+
+        if ip_prefix in facility_ipv6:
+            pass
+        elif '/128' in ip_prefix:
+            logger.info('this prefix is a /128: %s', ip_prefix)
+            if instances == 1:
+                list_report.append("PASS, prefix " + ip_prefix + " is correct. It is once (" + str(instances) + ") in the database.")
+            else:
+                list_report.append("FAIL, prefix " + ip_prefix + " is incorrect. It is " + str(instances) + " times in the database.")
+        elif '/127' in ip_prefix:
+            logger.info('this prefix is a /127: %s', ip_prefix)
+            if instances == 2:
+                list_report.append("PASS, prefix " + ip_prefix + " is correct. It is twice (" + str(instances) + ") in the database.")
+            elif instances == 0:
+                logger.info('This prefix appears 0 times in the database, most probably is a UNI: %s', ip_prefix)
+                pass
+            else:
+                list_report.append("FAIL, prefix " + ip_prefix + " is incorrect. It is " + str(instances) + " times in the database.")
+        else:
+            pass
+
+
+    device.close()
+    return list_report
+
+'''
+# mark
+# To test this function, uncomment this block
+####  CONSTANTS  ####
+#fqdn = 'edge1-testlab.nn.hea.net'
+fqdn = 'edge2-testlab.nn.hea.net'
+#fqdn = 'edge3-testlab.nn.hea.net'
+local_username = 'heanet'
+local_password = 'KqV7X98v!'
+
+fqdn = 'edge4-testlab.nn.hea.net'
+#fqdn = 'edge5-testlab.nn.hea.net'
+local_username = 'heanet'
+local_password = '$!3u$uxqDMTXzw9'
+
+#fqdn = 'edge1-dcu-glasnevin.nn.hea.net'
+#fqdn = 'edge1-dcu-spd2.nn.hea.net'  # device.facts['RE0']['model']
+#fqdn = 'edge2-dcu.nn.hea.net'
+#fqdn = 'dist1-lyit2.nn.hea.net'
+#fqdn = 'rr1-pw.nn.hea.net'
+#fqdn = 'core1-blanch.nn.hea.net'
+#fqdn = 'core2-blanch.nn.hea.net'
+#fqdn = 'core2-pw.nn.hea.net'
+#local_username = 'rancid'
+#local_password = '#pW5MV4G!q%3341sfsdFSS!@'
+####  CONSTANTS  ####
+
+import socket
+try:
+    address_ipv4 = (socket.gethostbyname(fqdn))
+except Exception as err:
+    print(str(err))
+
+#address_ipv4 = '193.1.255.255'
+#local_username = 'heanet'
+#local_password = 'KqV7X98v!'
+
+audit_report = audit_jnpr_duplicate_ip(address_ipv4, local_username, local_password)
+for i in audit_report:
+    print(i)
+'''

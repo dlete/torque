@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#mydiv1").hide();
+	$("#myhref").click(function(){
+		$("#mydiv1").show();
+	});
+
+    $("#myhref").click(function(){
+        //document.getElementById("mydiv2").style.visibility = "visible";
+        document.getElementById("mydiv2").style.display = "block";
+        document.getElementById("myheader").style.display = "none";
+        document.getElementById("mytable").style.display = "none";
+    });
+
+    // this works, this is the baseline!!
+    // https://www.w3schools.com/jsref/prop_style_display.asp
+    $(".myclass").click(function(){
+        //document.getElementById("mydiv2").style.visibility = "visible";
+        document.getElementById("mydiv2").style.display = "block";
+        document.getElementById("myheader").style.display = "none";
+        document.getElementById("mytable").style.display = "none";
+    });
+
+    // Works. On click, the original page becomes transparent and a new image
+    // (hidden up to them) does show up.
+    // https://www.w3schools.com/jsref/prop_style_opacity.asp
+    //$(".myclass").click(function(){
+    //    document.getElementById("mydiv2").style.display = "block";
+    //   document.getElementById("myheader").style.opacity = "0.5";
+    //    document.getElementById("mytable").style.opacity = "0.5";
+    //});
+});
+</script>
+<!--<a id="myhref" href="{% url 'inventory:ne_audit_bogus' 1 %}">Pigs in Space</a>-->
+<!--
+<div id="mydiv1">
+  <img src="/static/gif/ballerina_1.gif" id="mygif" style="width: 20%; height: 200%">
+</div>
+-->
+<!--<div id="mydiv2" style="visibility: hidden;">-->
+<div id="mydiv2" style="display: none;">
+  <!--<img src="/static/gif/ballerina_2.gif" id="mygif2" style="margin-left: auto; margin-right: auto; vertical-align: middle;">-->
+  <!--<h1 class="bg-primary" style="text-align: center;">Right back</h1>-->
+    <!--<button type="button" class="btn btn-primary btn-block btn-lg">Please wait</button>-->
+    <p></p>
+  <!--<img class="img-circle" src="/static/gif/ballerina_2.gif" id="mygif2" style="justify-content: center; width: 60%; height: auto;">-->
+  {% load staticfiles%}
+  <!--<img class="img-rounded" src="{% static "gif/Muybridge_race_horse_animated.gif" %}" id="mygif2" style="display: block; margin-left: auto; margin-right:     auto; vertical-align: middle; width: 80%; height: auto;">-->
+  <img class="img-rounded" src="/static/gif/{{ gif_random }}" id="mygif2" style="display: block; margin- left: auto; margin-right:     auto; vertical-align: middle; width: 80%; height: auto;">
+</div>
+
+
+<div class="alert alert-info" id="myheader">
+  <strong>You know why you are here. HIT ME!!</strong>
+</div>
+
+<div class="table-responsive" id="mytable">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>FQDN</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ne in ne_all %}
+        <tr>
+          <td>
+            <a href="{% url 'inventory:detail' ne.id %}">{{ ne.fqdn }}</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_one' ne.id %}">All</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_bogus' ne.id %}">Pigs in Space</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_transceiver' ne.id %}">Transceivers</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_intopticdiag' ne.id %}">Optical diagnostics</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_phyport' ne.id %}">Physical ports</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_os' ne.id %}">OS</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_lldp' ne.id %}">LLDP</a>
+          </td>
+          <td>
+            <a class="myclass" href="{% url 'inventory:ne_audit_ibgp' ne.id %}">iBGP</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+
+{% endblock content %}

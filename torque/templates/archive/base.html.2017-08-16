@@ -1,0 +1,110 @@
+{% load staticfiles%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="Audits a Juniper NE for consistency in its configration">
+    <meta name="keywords" content="Audit, junos-eznc">
+    <meta name="author" content="HEAnet GLC">
+
+    <!--This is the favicon-->
+    <link rel="icon" href="{% static "assets/img/circulo_naranja.png" %}" />
+
+    <title>Torque</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" />
+
+    <!-- Bootstrap specific, in this case Sticky footer with fixed navbar -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/sticky-footer-navbar.css" %}" />
+
+
+    <!-- Google Analytics, begin -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      <!-- this is the unique ID for this site from a Google Analytics point of view -->
+      ga('create', 'UA-100959520-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Google Analytics, end -->
+
+  </head>
+
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container"><!-- container, begin -->
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'inventories:ne_list' %}">NE List</a></li>
+
+            <li class="dropdown">
+              <a href="{% url 'inventories:ne_list' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventories<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'inventories:circuit_list' %}">Circuits</a></li>
+                <li><a href="{% url 'inventories:ne_list' %}">NE</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="/api/v1/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">API<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/api/v1/">API GUI</a></li>
+                <li><a href="/api-doc">API documentation (swagger/OpenAPI)</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'core:features' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'core:about' %}">About</a></li>
+                <li><a href="{% url 'core:features' %}">Features</a></li>
+                <li><a href="{% url 'core:known_bugs' %}">Known Bugs</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!-- container, end -->
+    </nav>
+
+
+    <!-- page content, begin -->
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <!-- page content, end -->
+
+
+	<!--
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
+	-->
+
+
+    <!-- Bootstrap core JavaScript
+    ====================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+
+  </body>
+</html>

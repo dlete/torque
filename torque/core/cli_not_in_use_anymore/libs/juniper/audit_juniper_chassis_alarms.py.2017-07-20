@@ -1,0 +1,55 @@
+
+def audit_juniper_chassis_alarms(address_ipv4, os_username, os_password, chassis_alarms):
+    # initialize an empty list, this is what the function will return
+    list_report = []
+
+    from jnpr.junos import Device
+    device = Device(host=address_ipv4, user=os_username, password=os_password)
+    device.open(gather_facts=False)
+
+    #from lxml import etree 
+
+    chassis_alarms = device.rpc.get_alarm_information({'format': 'json'})
+    alarm_count = chassis_alarms['alarm-information'][0]['alarm-summary'][0]['active-alarm-count'[0]['data']
+
+    #if alarm_count == '1':
+    #    list_report.append("FAIL, there are active chassis alarms")
+    #else: 
+    #    list_report.append("PASS, no active chassis alarms")
+
+    #etree.dump(alarm_class)
+
+    #from pprint import pprint
+    #pprint(alarm_count)
+
+    device.close()
+    return list_report
+
+
+# To test this function, uncomment this block
+####  CONSTANTS  ####
+fqdn = 'edge3-testlab.nn.hea.net'
+local_username = 'heanet'
+local_password = 'KqV7X98v!'
+
+#fqdn = 'core1-pw.nn.hea.net'
+#local_username = 'rancid'
+#local_password = '#pW5MV4G!q%3341sfsdFSS!@'
+####  CONSTANTS  ####
+import os 
+import sys
+import socket
+
+chassis_alarms = []
+
+try:
+    address_ip = (socket.gethostbyname(fqdn))
+except:
+    exit(0)
+    e = sys.exc_info()[0]
+    print(e)
+
+report_juniper_chassis_alarms = audit_juniper_chassis_alarms(address_ip, local_username, local_password, chassis_alarms)
+for l in report_juniper_chassis_alarms:
+    print(l)
+

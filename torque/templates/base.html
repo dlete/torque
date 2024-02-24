@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above meta tags *must* come first in the head; any other head 
+    content must come *after* these tags -->
+
+    <meta name="description" content="Audits a Juniper NE for consistency in its configration">
+    <meta name="keywords" content="Audit, junos-eznc">
+    <meta name="author" content="HEAnet GLC">
+
+    <!--This is the favicon-->
+    <link rel="icon" href="{% static 'assets/img/circulo_naranja.png' %}">
+
+    <!-- putting <title> inside a block template tag results in a default title 
+    that will be rendered by "default" unless passed on from the view -->
+    {% block title %}<title>Torque</title>{% endblock title %}
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Bootstrap specific, in this case Sticky footer with fixed navbar -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sticky-footer-navbar.css' %}">
+
+
+    <!-- Google Analytics, begin -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      <!-- this is the unique ID for this site from a Google Analytics point of view -->
+      ga('create', 'UA-100959520-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Google Analytics, end -->
+
+  </head>
+
+
+  <body>
+
+    <header>
+      <!-- Fixed navbar -->
+	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!--<a class="navbar-brand" href="#">Torque</a>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+            <!--<li class="nav-item active">-->
+              <!--<a class="nav-link" href="{% url 'inventories:ne_list' %}">NE <span class="sr-only">(current)</span></a>-->
+              <a class="nav-link" href="{% url 'inventories:ne_list' %}">NE</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Inventories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'inventories:ne_list' %}">NE</a>
+                <a class="dropdown-item" href="{% url 'inventories:circuit_list' %}">Circuits</a>
+              </div>
+            </li>
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                API
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/api/v1/">API GUI</a>
+                <a class="dropdown-item" href="/api-doc/">API documentation (swagger/OpenAPI)</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Documentation
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'core:about' %}">About</a>
+                <a class="dropdown-item" href="{% url 'core:features' %}">Features</a>
+              <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'core:known_bugs' %}">Known Bugs</a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+
+    <div class="container"> <!-- page content, begin -->
+      {% block content %}
+        <!-- the other templates will insert content here -->
+      {% endblock content %}
+    </div> <!-- page content, end -->
+
+
+	<!--
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
+	-->
+
+
+    <!-- Bootstrap core JavaScript
+    ====================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- jQuery, from either a DCN or locally -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/vendor/jquery-slim.min.js' %}"></script>
+	<script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  </body>
+</html>

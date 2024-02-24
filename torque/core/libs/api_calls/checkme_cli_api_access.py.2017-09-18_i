@@ -1,0 +1,61 @@
+'''
+http://docs.python-requests.org/en/master/user/authentication/
+'''
+import requests
+
+username = 'admin'
+password = 'Friday13'
+
+r = requests.get('http://192.168.56.102:3000/api/v1/inventories/ne/', auth=('admin', 'Friday13'))
+print("Next is r.status_code")
+print(r.status_code)
+
+
+# edge3-testlab.nn.hea.net 448
+base_url = 'http://192.168.56.102:3000/api/v1/audits/ne_bogus/'
+for i in r.json():
+    #print(i['fqdn'], i['id'])
+    url = base_url + str(i['id']) + '/'
+    print(i['fqdn'], i['id'], url)
+
+
+r = requests.get('http://192.168.56.102:3000/api/v1/audits/ne_bogus/448/', auth=('admin', 'Friday13'))
+print("Next is r.json()")
+print(r.json())
+print("Next is type(r.json())")
+print( type(r.json()) )         # <class 'dict'>
+
+print(r.json()['bodymessage'])
+audit_report_dict = r.json()
+
+print("Next is audit_report_dict['bodymessage']")
+print(audit_report_dict['bodymessage'])
+if audit_report_dict['overall_audit_result'] == 'FAIL':
+    print("overall is a FAIL")
+    print(audit_report_dict['report_fail'])
+
+
+'''
+for k, v in r.json().items():
+    #print("This is the key: " + k + ", and this is the value: " + str(v))
+    if k == 'bodymessage':
+        print(v)
+    if k == 'overall_audit_result':
+        print(v)
+'''
+
+#print("Next is audit_report_dict")
+#print(audit_report_dict)
+#print("Next is type(audit_report_dict)")
+#print(type(audit_report_dict))      # <class 'dict_items'>
+
+#print(audit_report_dict['bodymessage'])
+#print(audit_report_dict['overall_audit_result'])
+#if audit_report_dict['overall_audit_result'] == 'FAIL':
+#    print("overall is a FAIL")
+
+
+#print("Next is r.json()[0]")
+#print(r.json()[0])
+#print("Next is type(r.json()[0])")
+#print(type(r.json()[0]))

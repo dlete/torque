@@ -1,0 +1,182 @@
+supplier;circuit_id;a_end;b_end;ctype;cinfo
+Airspeed;PAC-6752-01-01;NUIG;Post Graduate Application Centre (PAC);;100 Mbps Installed by Supplier 19/06/2014 (3 year deal)
+Airspeed;MIN-6735-01-01;MI-MAYO, Furnance, Newport;ParkWest (pw-sw1 int gi1/0/22);;100 Mbps (This was marked as 1Gb not sure why cormacoc)
+Airspeed;HEA-8715-01-01;MAC, Mountbellew Agricultural College ;to AIT via Airspeed;400Mbps ;(cpe1-mac/mac-sw1 Ge-0/1) (ait-sw2 Gi1/0/6) Commission Date: 24 Aug 2015 (3 year contract)
+Airspeed;HEAN-2917-01-01;UCC, Confucius Institute, Glasheen rd. ;to ParkWest via Airspeed;100Mbps ;(ucc-ci-sw1 Ge-0/1) Commission Date: 11 Nov 2015 (3 year contract)
+Airspeed;RCPI-1824-01-01;RCPI Fredrick St;PW;;1Gbps
+Airspeed;SBY-6670-01-01 (Enet: E06584);NUIG (gal-sw1);Smartbay, Spiddal;;100 Mbps Commissioned 01/08/12 (One Year Contract) Renewed 05/01/2017 - 05/01/2020 Cormacoc 201602 Lot 4. AKA Údaras Marine Institute
+Aurora;NAT1038;AIT PoP1 Room Q109;Parkwest PoP 1 Dub 1;DarkFibre;National Backbone AIT - Parwest. Commissioned 16/08/2016 (5 Year Deal) Cormacoc
+Broighter;RCP_FSSP;RCPI Frederick St;RCPI Setanta House;;1G radio link Installed 08/12/2014 (3 year deal)
+Broighter;RCP_FSKS;RCPI Frederick St;RCPI Kildare St;;1G radio link (via Setanta House) 08/12/2014 (3 year deal)
+Broighter;HEAnet DIT Airport-PW;ParkWest PoP;DIT Airport;;50Mb radio link 19/10/2015 (3 year deal)
+BT;HEAN0009B;Citywest - cab02;TeleCity - INEX Connection;X-connect;In USE cannot go to tender, only one provider, internal to datacenter (GMALONE checking price 20161206
+BT;HEAN0300;Carlow IT Room A304;Waterford IT;Dark Fibre;Siebel# 1-523532301. Live: 13/09/07. Renewed - new end date 2018-06-30 (Check with EK about Until: 19/12/2019 as per tender 201307 Lot 6
+BT;HEAN0301;HEAnet PoP - NUIG;Athlone IT;Dark Fibre;Siebel# 1-523532395. Live 01/07/2014 - 19/12/2019
+BT;HEAN0311;IT Tralee;HEAnet PoP - UL;Dark Fibre;Live: 01/07/2015 (5 Year Contract)
+BT;HEAN103233;HEANET Servecentric;Dundrum Business Park;ISDN;ISDN Videoconf Gateway cct.
+BT;HEAN107521;NUIG;St Angela's, Sligo;100Mb fibre & radio link from ESB Cairns Hill;Live 19/05/2008. Cease Raised 10/03/2017, effective 10/4/2017
+BT;HEAN108259;Citywest;Carlow IT;Gig-e;Live date: 23/09/08. Renewed 01/04/2014 - 01/04/2017
+BT;HEAN109885;LIT, IT Centre, Moylish Park;GMIT;Gig-e;Live date: 19/10/10 ?
+BT;HEAN111657;Citywest;QQI, Denzille Lane;BLI;1Gb fibre
+BT;HEAN111662;BT Citywest;IPA Ballsbridge;Gig-e;Install date: 14.03.15 (3 year contract)
+BT;HEAN111668;BT Citywest;Tipperary Institute/Thurles;Gig-e;Install date: 02/2014
+BT;HEANETHG32321;BT Citywest;NUI Merrion;100Mb BT Etherflow;Install date: 20.10.2014
+BT;CWCMETHG37491;BT Citywest;IUA Merrion;200Mb BT Etherflow;Install date: 05.11.2015
+Colt;DUB/DUB/LE-060509 / DUB/DUB/E1S061192;Interxion;HEA;Gig-E;Live in Jan 2011.  (2Mb Management line)
+Colt;DUB/DUB/LE-146817;CityWest;Marine Institute, 2nd Floor 5 Wilton Place;100Mbps;Live Mar 2013,Move from 80 Harcourt St. to 5 Wilton Place 12th Aug 2015, Contract expires 27th March 2016
+OpenEir;WES586110997;DCU Basement Library;DCU Glasnevin Innovation Centre;GE;DCU GE
+OpenEir;WAV1010152;Queen's University Belfast (McClay Library);LYIT (Main Building Room 2212);10GE;Letterkenny - Queens and onto Citywest(via JANET)
+OpenEir;HEAF001;Esatx Citywest;Interxion Parkwest;Dark Fibre;HEAnet cage in Citywest to Interxion in Parkwest - Part of national ROADM network
+OpenEir;HEAF003;Interxion Parkwest;BCFE;Dark Fibre;HEAnet cage in Interxion in Parkwest to BCFE Main Comms room - Client Dark Fibre, Cisco SFP
+OpenEir;HEAF004;UCD LG5;UCD Carysfort;Dark Fibre;Carysfort PABX room to UCD LG15 (then use UCD own fibre to extend from LG5 to Daedalus), Cisco SFP
+OpenEir;HEAF005;DCU St Pats college Drumcondra;DCU Innovation House Glasnevin;Dark Fibre (5 Year);Part of the DCU - Innovation House - St Pats - DCU ring
+OpenEir;HEAF002;DCU Henry Grattan Building (DCU Main Campus);DCU St Pats college Drumcondra;Dark Fibre (8 Year);Part of the DCU - Innovation House - St Pats - DCU ring
+OpenEir;WDM221002448;Waterford Walton Building;ITC Wexford (St Peters College Summer Hill);1Gb Transmission;ITCarlow is the client
+OpenEir;WDM221002475;HEAnet Limerick PoP (UL);Shannon Hotel Management;1Gb Transmission;NUIG is the client
+OpenEir;WDM221002487;HEAnet NUIG PoP1;Smartbay Landing Station, Spiddal. MI Comms Room at rear of Scoil Colaiste Chroi Mhuire, Spiddal;1Gb Transmission;Smatrtbay is the client
+OpenEir;WES586111962;IT Tallaght - upstairs comms room;Premier House, Tallaght;1Gb Transmission;IT Tallaght is the client
+OpenEir;IRU501100128;UL Main Comms Room;UL Troy Village;Dark Fibre;To be installed
+OpenEir;IRU501100107;ParkWest HEAnet PoP;TCD Dartry (Student Residence);Dark Fibre;Installed 28 Aug 2015
+OpenEir;IRU501100124;HEAnet POP, Interxion DUB01, Parkwest, Dublin 12;RCSI York House;Dark Fibre;Installed by supplier 11 Dec 2015
+OpenEir;EPL6021059;ParkWest PoP;EPA Wexford Johnstown Castle;1Gb;Installed 8th March 2016
+OpenEir;IRU501100136;DCU Library;DCU All Hallows;Dark Fibre;Installed 21st March 2016
+OpenEir;IRU501100139;Parkwest PoP;ITB;Dark Fibre;Installed 1st of July 2016
+OpenEir;IRU501100161;Galway PoP1 (Main PoP in NUIG);MI (Marine Institute Oranmore;Dark Fibre;Installed 03rd of August 2016
+OpenEir;IRU501100163;LIT Thurles PoP;St Patricks College Thurles (St.) Pats;Dark Fibre;Installed 17th of August 2016
+OpenEir;IRU501100164;ParkWest PoP;IADT;Dark Fibre;Installed 14th of October 2016
+OpenEir;IRU501100168;Sligo PoP;NUIG STACS St Angelas;Dark Fibre;Installed 9th of March 2017
+OpenEir;WDM221002561;Athlone PoP1 (Q109);TCD iLofar;10Gb Wired;Installed 10 July 2017
+Enet;EN00438;Parkwest, pw-sw1 Gi1/0/11;NUIM, kilkenny-sw1 Gi0/1;100Mbps;41330
+Enet;EN00505;Blackrock Castle Observatory, blackrock-sw1 Gi0/1;CIT, cit-sw1 Gi1/0/3;100Mbps;40867
+Enet;EN00887;UCC, cork-sw1 Gi1/0/1;St. Johns College CorkVEC, cpe1-sjc Gi0/0;100Mbps;41514
+Enet;EN00985;UCC, cork-sw1 Gi1/0/5;CorkVEC, corkvec-sw1 Gi0/1;100Mbps Copper;41311
+Enet;EN01730;NUIM Kilkenny Campus;WIT/TSSG Kilkenny Campus;100Mbps managed. Live 15/05/2012;
+Enet;EN04282;UL Portniculla Hospital;Parkwest;100Mbps managed. Live 23/02/2015 (3 year contract);
+Enet;EN04860;LYIT, Killybegs;Parkwest;200Mbps managed. Installed 10 Aug 2015, (3 year contract);
+Enet;EN04861;NUIG, Gweedore;Parkwest;100Mbps managed. Installed 11 Aug 2015 (3 Year contract);
+Enet;EN04862;RIAM;Parkwest;1Gbps managed. Installed 31 Aug 2015 (3 year contract);
+Enet;EN04863;LIT Questum Enterprise Centre;LIT Clonmel;Gig Metro, Live 15/07/2015;
+Enet;EN05078;CIT Melbourn Data Centre;IT Tralee, Solas/nursing Building;10G Circuit. Commissioned: 20/01/2016;
+Enet;EN05951;ParkWest, pw-pe2 gi3/2;GMIT - Castlebar Campus, castlebar-sw1 gi0/1;1G Circuit. Live: 07/04/2016. Contract end date 28/04/2017 (upgraded from Old Airpseed circuit ref#: HEA-6602-01-01 wireless to wired);28/04/2017 - This is still with Airspeed, according to QBs
+Enet;EN05571;ParkWest, pw-sw1 gi1/0/17;College of Anaesthetists, coa-sw1 gi0/1;400Mb Circuit. Live: 26/05/2016. Contract end date 26/05/2019;43611
+Enet;EN06827;ParkWest, pw-pe1 gi3/14;LMETB, cpe1-lmetb gi0/1;400Mb Circuit. Live: 25/07/2016. Contract end date 25/07/2019;43671
+Enet;EN04281;UCC, cork-pe1 gi3/10;BSU, Biological Services Unit , bsu-sw1 gi0/1;400Mb Circuit. Live: 24 Feb 2016. Contract end date 24 Feb 2019;43520
+Enet;EN06584;Galway PoP gal-sw1 gi2/0/15;cpe1-smartbay ge0/0/0 Smartbay, Spiddal AKA Údaras Marine Institute, Galway;100Mb Wireless Circuit (previously Airspeed) . Live: 05 Jan 2017. Contract end date 05 Jan 2020;43835
+Enet;EN07084;ParkWest PoP pw-pe2 gi3/4 (SM);dit-broombridge-sw1 gi0/1/0 Copper;100Mb Wireless Circuit . Live: 30 June 2017. Contract end date 30 June 2020;44012
+Enet;EN02447;GRCTC, South Mall, Cork - grctc-sw1:gi0/1;UCC Kane - ucc-pe1:Gi3/9;DF (installed 24/07/14);43430
+Enet;HEA-CLW-P1A;Carlow College, carlowc-sw1: gi0/1;IT Carlow - itc-sw2: gi3/9;point-to-point fibre; ?
+Enet;ENDF03888;IT Sligo;Sligo Medical Academy;NUIG link in Sligo Regional Hospital;install 28/09/2015
+Enet;ENDF03638;WIT Walton;WIT Grannary;Dark Fibre, Waterford Enet Ring 3;install 28/08/2015
+Enet;ENDF04006;LYIT Colab Building;Letterkenny General Hospital nuig-lgh-sw1;Installed 17/12/2015;44182
+Enet;ENDF04353;Connolly Building Cork;Lancaster Hall Cork;Installed 1/10/2015, No live HEAnet Equipment, DF;Option to bill till 26/11/2018
+Enet;ENDF04354;BioScience Building UCC;ERI Cork;Installed 1/10/2015, No live HEAnet Equipment, DF;Option to bill till 26/11/2018
+Enet;ENDF04355;BioScience Building UCC;Dental School CUH Cork;Installed 1/10/2015, No live HEAnet Equipment, DF;Option to bill till 26/11/2018
+Enet;ENDF02831;NUIG DERI;(SRB <->) NEB;DERI to NEB with drop in SRB.;43430
+Enet;ENDF05498;NUIG;Radisson Blu - Galway;HEAnet Conference connection 2016 ;
+Enet;ENDF04222;TCD PoP2 (Loyds);DIAS, 31 Fitzwilliam Place, Dublin 2;5 year Dark Fibre start 14/11/2016;
+Enet;ENDF04223;TCD PoP 2 (218 HPC Machine Room Loyd);DIAS, Burlington Road, Dublin 4;5 year Dark Fibre start 14/11/2016;
+Enet;ENDF05723;TCD PoP 1 (200 Pearse Street);STACKB IFSC Dublin1;5 year Dark Fibre start 14/09/2016;
+Enet;ENDF05458;UL PoP;CERC Clinical Education Research Centre;Dark Fibre Ring Added 23 Sep 2016. Handed to Client 12 Jan 2017;
+Enet;ENDF01437;Cork ESBT Kilbarry;Cork Kane Building;National Dark Fibre;2019
+Enet;ENDF01435;Cork ESBT Kilbarry;Cork UCC Library, College Road, Cork;National Dark Fibre;2019
+Enet;ENDF01436;Cork Kane Building;Cork UCC Library, College Road, Cork;National Dark Fibre;2019
+Enet;ENDF01443;Dundalk ESBT PoP Mullagharlin, Eastern Bypass N52 Dundalk;Dundalk DDK IT Comms Room PABX DDK IT Comms Room S116;National Dark Fibre;2019
+Enet;ENDF01442;Dundalk DDK IT Comms Room PABX DDK IT Comms Room S116;Dundalk PJ Carroll Building, Dundalk IT, ENDF01441;National Dark Fibre;2019
+Enet;ENDF01441;Dundalk ESBT PoP Mullagharlin, Eastern Bypass N52 Dundalk;Dundalk PJ Carroll Building, Dundalk IT, ENDF01441;National Dark Fibre;2019
+Enet;ENDF01430;Galway Splice Box, NUIG NUIG Arts & Science Rm139;Galway NUIG DERI;National Dark Fibre;2019
+Enet;ENDF01429;Galway ESBT PoP, Ballybane, Galway;Galway NUIG DERI;National Dark Fibre;2019
+Enet;ENDF01431;Galway Splice Box, NUIG NUIG Arts & Science Rm139;Galway ESBT PoP, Ballybane, Galway;National Dark Fibre;2019
+Enet;ENDF01432;Limerick ESB Sub Station Ballysimon Rd;Limerick UL Workpoint 3, Block A;National Dark Fibre;2019
+Enet;ENDF01433;Limerick ESB Sub Station Ballysimon Rd;Limerick UL Medical Science Bldg;National Dark Fibre;2019
+Enet;ENDF01434;Limerick UL Workpoint 3, Block A;Limerick UL Medical Science Bldg;National Dark Fibre;2019
+Enet;ENDF01428;Sligo ESBT Sligo, Carrowroe (R287);Sligo Sligo IT 1978 building Sligo IT Comms Room 2056;National Dark Fibre;2019
+Enet;ENDF01439;Waterford WIT, Walton {IT} Bldg, Cork Rd;Waterford WIT, T&L Building, Cork Road;National Dark Fibre;2019
+Enet;ENDF01438;Waterford ESBT Kiloteran;Waterford WIT, Walton {IT} Bldg, Cork Rd;National Dark Fibre;2019
+Enet;ENDF01440;Waterford ESBT Kiloteran;Waterford WIT, T&L Building, Cork Road;National Dark Fibre;2019
+ESBT;4636;;;Dark fibre NTFON;HEANet Dark Fibre - UPC St Margarets Rd, Finglas to Mullagharlin Dundalk
+ESBT;4637;;;Dark fibre NTFON;HEANet Dark Fibre - Mullagharlin POP Dundalk eNET East to Carrick on Shannon Co-Lo
+ESBT;4638;;;Dark fibre NTFON;HEANet Dark Fibre - Carrick on Shannon Co-Lo to Sligo eNET East
+ESBT;4639;;;Dark fibre NTFON;HEANet Dark Fibre - Carrick on Shannon Co-Lo to Ballybane(Galway) eNET West Via Cashla
+ESBT;4640;;;Dark fibre NTFON;HEANet Dark Fibre - Ballybane eNET East to Drumline POP Co-Lo Via Cashla
+ESBT;4641;;;Dark fibre NTFON;HEANet Dark Fibre - Drumline POP Co-Lo to Killonan(Limerick) POP eNET UL
+ESBT;4642;;;Dark fibre NTFON;HEANet Dark Fibre - Killonan(Limerick) POP eNET RoxBorough to Kilbarry(Cork) POP eNET Churchfield
+ESBT;4643;;;Dark fibre NTFON;HEANet Dark Fibre - Kilbarry(Cork) POP eNET Mahon to Kiloteran(Waterford) POP eNET West
+ESBT;4644;;;Dark fibre NTFON;HEANet Dark Fibre - Kiloteran(Waterford) POP eNET East - Arklow POP Co-Lo
+ESBT;4645;;;Dark fibre NTFON;HEANet Dark Fibre - Arklow POP Co-Lo to EsatX HEANet Cage - Via C’mines/C'town/Citywest
+ESBT;4646;;;Dark fibre NTFON;HEANet Dark Fibre - Citywest UPC to Stradbally POP Co-Lo
+ESBT;4647;;;Dark fibre NTFON;HEANet Dark Fibre - Stradbally POP Co-Lo to Drumline PoP Co-Lo
+ESBT;TCD to DCU;;;;HEAnet Dark Fibre O'Reilly Library to 200 Pearse St
+ESBT;Blanch to DCU;;;;DCU Henry Grattan to Blanchardstown Data Centre
+ESBT;Parkwest to TCD;;;;TCD 200 Pearse St to Interxion Parkwest
+VM;2945-13;Esat-X;ESBT PoP, CityWest, Dublin;Retendered 201507 Lot05 19/10/2015. Expiry 19/10/2020. Duplicate circuit. Agreed early cease with Cormac Quinn raised 07/07/2017 by Cormacoc effective 07/08/2017. Nothing to be disconnected.;
+VM;2945-3;Esat-X;Tony Ryan Academy, Citywest;Client link for DCU. Tony Ryan Academy are Bluenet'ed to DCU. Retendered 201507 Lot7 19/10/2015. Expiry 19/10/2020;
+VM;2945-4;Esat-X;ESBT, Citywest;Forms part of backbone link from Stradbally to EsatX. Within the ESB sub-station in Citywest this fibre is just patched (via an ODF) to the dark fibre running from Stradbally which is supplied by another provider. Start date 5th of September 2014.;
+VM;2945-5;Esat-X;An Cheim, Global Voice;Resilient dark fibre from HP Global Voice Citywest to Esatx An Cheim link.;
+VM;2945-6;Esat-X;An Cheim, Global Voice;Resilient dark fibre from HP Global Voice Citywest to Esatx An Cheim link.;
+VM;2945-8A;Esat-X;Tallaght Hospital (AMNCH);Client link for TCD (teaching section of Tallaght Hospital). The links to ITT (2945-8B) and UCD (2945-8C), below, are dependent upon this link. At Tallaght Hospital, the link is terminated on an ODF in a comms room which is owned by TCD.;
+VM;2945-8B;Tallaght Hospital (AMNCH);IT Tallaght (upstairs hub room);General IP link for ITT. This link is dependent upon link 2945-8A. At Tallaght Hospital, the link is terminated on an ODF in a comms room which is owned by TCD. Retendered 201507 Lot15 19/10/2015. Expiry 19/10/2020;
+VM;2945-8C;IT Tallaght (downstairs hub room);UCD belfield-sw2(Daedalus building) -> cwt-sw1;This link is dependent upon links 2945-8A and 2945-8B. Note: dias-sw2 lambda get passively injected onto this fibre from DCC in UCD. Retendered 201507 Lot11 19/10/2015. Expiry 19/10/2020;
+VM;2945-9;Esat-X;DEG;Resilient backbone link from CityWest to Kilcarbery Park. Retendered 201507 Lot04 19/10/2015. Expiry 19/10/2020;
+VM;4197-2;TCD (200 Pearse Street);5 Exchange Place;Primary general IP Educampus. Part of fibre ring TCD - 5Exchage Place - GD5 - NCI - TCD. In Production 1st March 2016 (3 year deal);
+VM;4197-1;5 Exchange Place;5 Georges Dock;Primary general IP HEAnet. Part of fibre ring TCD - 5Exchage Place - GD5 - NCI - TCD. In Production 1st March 2016 (3 year deal);
+VM;3171-1B;GD5;NCI;Resilient general IP link for NCI. Part of fibre ring TCD-GD5-NCI-TCD.;
+VM;3171-1C;TCD (LG14);NCI;Resilient general IP link for NCI. Part of fibre ring TCD-GD5-NCI-TCD. At TCD, this link is patched to 200 Pearse Street via internal TCD fibre.;
+VM;CRF5112-1;TCD (200 Pearse Street);ESRI Sir John Rogerson's Quay;DF ring for TCD ESRI and TCD Enterprise. End date 19/10/2020;
+VM;CRF5112-2;ESRI Sir John Rogerson's Quay;TCD Enterprise Center;DF ring for TCD ESRI and TCD Enterprise. End date 19/10/2020;
+VM;3171-3;TCD (200 Pearse Street);D'Olier Street;Client link for TCD. Retendered 201507 Lot17 19/10/2015. Expiry 19/10/2020;
+VM;3171-4;TCD (200 Pearse Street);Foster Place;Client link for TCD.Retendered 201507 Lot18 19/10/2015. Expiry 19/10/2020;
+VM;3171-6;TCD (LG14);RCSI, 2nd Floor Comms Room, 123 Stephen's Green;Resilient general IP link for RCSI. At TCD, this link is patched to 200 Pearse Street via internal TCD fibre.5 year contract signed from 06/04/2016 - 06/04/2021;
+VM;CRF3230-1 / 3230-1;Clonshaugh/UPC;GD5;2Mb PRI - HEAnet Office Phoneline.;
+VM;3244-1;DEG;ESB, Finglas;Forms part of backbone link from Mullagharlin/Dundalk to Kilcarbery Park. Within the ESB sub-station in Finglas this fibre is just patched (via an ODF) to the dark fibre running from Mullagharlin which is supplied by another provider.;
+VM;3244-2;PW PoP;ESB, Finglas;Forms part of backbone link from DKIT Room S116--e-net Dundalk--ESBT Mullagharlin---ESBT Finglas---UPC--Parkwest PoP. roadm1-pw to roadm1-dundalk.New adva backbone 2013;
+VM;3386-1;TCD (LG14);ICHEC Offices;General IP link for ICHEC Offices in Trinity Enterprise Campus. At TCD this link is patched to 200 Pearse Street via internal TCD fibre. Cease raised Cormacoc 24/03/2016;
+VM;3366-1;NUIM (North Campus);Blanchardstown(Servecentric);2009. Was originally to North campus but was swapped over to the South campus on 14th of July 2011 see 3583-2;
+VM;CRF3317-2;DCU;Our Lady's Hospital for Sick Children;Dark Fibre Bluenet trunk link (dcu-sw1 to olhsc-sw1). Note: Ethernet. Retendered 201507 Lot11 19/10/2015 . Expiry 19/10/2020 before and after maps to ensure the ring doesn't overlap;
+VM;3578-1;UCD (Architecture);EPA (Clonskeagh);140 meter Dark Fibre (1Gig) patched via UCD internal fibre from Architecture to Daedalus (ucd-pe1).;
+VM;2945-12;CWT;UCD;Dublin Ring Fibre. From: CWT PoP. To: Daedalus, UCD - UPC ODF Patch Panel - Cab 8;
+VM;2945-10;Citywest;Parkwest;Dublin core fiber ring 2011. ADVA ROADM ring;
+VM;3583-1;Parkwest;Blanchardstown;Dublin core fiber ring 2011. ADVA ROADM ring;
+VM;2945-11;NUIM North Campus;Citywest;Dublin core fiber ring 14th July 2011. nuim-sw3 to cwt-pe1 (Dark Fibre);
+VM;3583-2;NUIM South Campus;Blanchardstown;mu-sw4 to bh-pe1 (Dark Fibre) 10 dBm SC attenuation on Rx at Blanch end;
+VM;CRF3702-1;DLVEC Cumberland St.;Blanchardstown;dlvec-sw1 to bh-pe1 (Managed) ;
+VM;CRF3703-1;Interxion, Parkwest;QQI, Mount Street Lower;1G Point to Point (Managed). Install: 29/06/12.Renewed 19/10/2015. Expiry 19/10/2018. (ME3400, Gig0/1, RJ45);
+VM;CRF3704-1;QQI, Denzille Lane ;QQI, Mount Street Lower ;1G Point to Point (Managed);
+VM;CRF3891-1;NCAD, Thomas St, Dublin 2 ;NCAD - CWT, cwt-sw1 ;1G Point to Point (Managed);
+VM;CRF3945-1;HRB ;BT, Citywest, cwt-sw1 ;1G Point to Point (Managed). Install: 01/07/14;
+VM;CRF3984-1;IADT;UCD, Daedalus;Dark Fibre Point to Point ;
+VM;CRF3899-1;UCD, Lyons Estate;UCD, Daedalus;Wireless Point to Point, 100Mbps ;
+VM;CRF4001-1;BCFE, Arts Department ;ParkWest;UPC Fibre, 1Gb ;
+VM;CRF2945-14;ITCarlow, Wicklow Campus ;CityWest;UPC wireless, 100Mbps ;
+VM;CRF3912-1;DCU, Main Campus ;DCU Enterprise Centre Glasnevin ;UPC DarkFibre, ;
+VM;3961-1;DIT Grangrgorman - HUB2, Energy house (grangegorman-sw2);InterXion (pw-pe1);UPC DarkFibre. Install: 14/07/2014. Live: 14/07/2014;
+VM;CRF3948-9;NUIG, Main Campus ;GMIT Letterfrack ;UPC Wireless, ;
+VM;CRF3948-2;NUIG, Main Campus ;Carron field station, Carron, Co. Clare ;UPC Wireless, ;
+VM;CRF3948-4;NUIG, Main Campus ;Áras Mháirtín Uí Chadhain, Carraroe, Galway ;UPC Wireless, ;
+VM;CRF3948-5;NUIG, Main Campus ;Aras Na hOllscoil, Connemara, Galway ;UPC Wireless, ;
+VM;CRF3948-6;NUIG, Main Campus ;Mace Head Atmospheric Research Station, Carna, Galway ;UPC Wireless, ;
+VM;CRF3948-7;NUIG, Main Campus ;Áras Shorcha Ní Ghuairim, Galway ;UPC Wireless, ;
+VM;CRF3948-8;NUIG, Main Campus ;Martin Ryan Institute, Carna, Galway ;UPC Wireless, ;
+VM;CRF3948-10;NUIG, Main Campus ;LIT Tipperary, Clonmel;UPC 1G leased line;
+VM;2945-16;CityWest;UCD, Carysfort Smurfit School of Business;Virgin Media Dark Fibre 10 year start date 17/11/2015;
+VM;CRF5001-1;Blanchardstown (bh-sw1);IOTI Fumbally Square;Virgin Media 100Mb Managed 2 year start date 18/02/2016 (No tender, 3 quotes);
+VM;CRF4207-1;Blanchardstown;EduCampus Santry;Virgin Media 1G managed. 01/06/2016 (3 year);
+VM;CRF4183-1;CityWest ;TCD Dartry Trinity Hall residients ;Virgin Media 1G managed. 30/05/2016 (3 year);
+VM;CRF4184-1;CityWest ;TCD School of Medicine ;Virgin Media (Dark Fibre). 13/07/2016 (5 year);
+VM;CRF5130-1;CityWest ;ETBI, Piper's Hill, Kilcullen Rd, Naas;Virgin Media (500Mb Wired). 30/09/2016 (3 year);
+VM;CRF5200-1;ParkWest PoP ;ITB Block A ;Virgin Media (Dark Fibre). 17/02/2017 (5 year);
+VM;CRF5058-1;Cork PoP UCC Kane ;CIX;Virgin Media (Dark Fibre). Ask Garreth Malone (5 year);
+Brownet;id_63;dist1-wat1;core2-cwt;;
+Brownet;id_77;dist1-wat2;core1-cork2;;
+Brownet;id_101;core1-cwt;core1-pw;;
+Brownet;id_102;core1-cwt;core1-ucd;;
+Brownet;id_103;core1-dcu;core2-blanch;;
+Brownet;id_104;core1-pw;core1-blanch;;
+Brownet;id_105;core1-pw;core2-tcd;;
+Brownet;id_106;core2-dcu;core2-tcdet-3/0/0;;
+Brownet;id_107;core2-ucd;core1-tcd;;
+Brownet;id_108;core2-cwt;core2-pw;;
+Brownet;id_109;core1-gal1;core2-pw;;
+Brownet;id_110;core1-gal2;core1-lim1;;
+Brownet;id_111;core1-lim1;core2-cwt;;
+Brownet;id_112;core2-cwt;core1-cork2;;
+Brownet;id_113;core1-lim2;core1-cork1;;

@@ -1,0 +1,9 @@
+// ne and its nnis
+digraph {
+	node [shape=egg]
+	"edge1-dcu-glasnevin.nn.hea.net" [label="edge1-dcu-glasnevin.nn.hea.net"]
+	"edge1-dcu.nn.hea.net" [label="edge1-dcu.nn.hea.net"]
+		"edge1-dcu-glasnevin.nn.hea.net" -> "edge1-dcu.nn.hea.net"
+	"edge2-dcu.nn.hea.net" [label="edge2-dcu.nn.hea.net"]
+		"edge1-dcu-glasnevin.nn.hea.net" -> "edge2-dcu.nn.hea.net"
+}

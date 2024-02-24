@@ -1,0 +1,25 @@
+So for the ones that look incorrect on the network we have them coded as follows:
+P.1696.23.xx  :   Juniper - SFP-10GE-ZR
+The only other options here on the flexbox are: SFP-1GE-LH, SFP+-DWDM-23dB-C31, SFP-DWDM-28dB-C31
+I will try each of these options in our lab. SFP+-DWDM-23dB-C31 might give us a better reading on the Juniper platforms.
+
+S.1612.25.xx  :   Juniper - EX-SFP-GE80KCW1590
+The only other options here on the flexbox are : SFP-1GE-LH or SFP-CWDM-25dB-1590
+I will try each of these options in our lab, SFP+-DWDM-23dB-C31 might give us a better reading on the Juniper platforms.
+
+The other ones that I have here to test are coded as follows but I believe these are correct on RMAN:
+
+P.1396.10 : Juniper - SFP-10GE-LR
+
+X.1396.10 : Juniper - EX-XFP-10GE-LR
+
+P.1396.2M : Juniper - SFP-10GE-LRM
+
+X1396.10 : Juniper - EX-XFP-10GE-LR
+
+S.1312.10.D : Juniper - SFP-1GE-LX
+
+T.C12.02.A : Juniper - SFP-1GE-T
+
+S8512.02.D : Juniper - SFP-1GE-SX
+

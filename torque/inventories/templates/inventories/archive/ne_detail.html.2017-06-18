@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load staticfiles%}
+
+{% block content %}
+<!--<img class="img-rounded" src="/static/gif/ec7a113d44651fe2aa42bda725fafd55.jpg">-->
+<!--<img class="img-rounded" src="/static/edge1-dcu-glasnevin_nnis.svg" width="150">-->
+
+  <h3 class="sub-header">{{ bodymessage }}</h4>
+
+
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>These are my NNI Neighbors</th>
+		<th>Graph of Ne and its NNI neighbors</th>
+      </tr>
+    </thead>
+
+    <tbody>
+	<tr>
+	<td>
+      <div class="table-responsive">
+      <table class="table table-striped">
+      {% for nni_neighbor in nni_neighbors %}
+      <tr>
+      <td>
+      <a href="{% url 'inventory:detail' nni_neighbor.id %}">{{ nni_neighbor.fqdn }}</a>
+      </td>
+      </tr>
+      {% endfor %}
+	  <!--<p>vecinos aqui</p>-->
+      </table>
+      </div>
+	</td>
+
+	<td>
+      <div style="text-align:center; vertical-align: middle;">
+      <!--<img class="img-rounded" src="/static/nnis_edge1-dcu-glasnevin.svg" width="250">-->
+      <!--<link rel="icon" href="{% static "assets/img/circulo_naranja.png" %}" />-->
+      {{ img_name }}
+      <img class="img-rounded" src="/static/{{ img_name }}" width="250">
+      </div>
+	</td>
+	</tr>
+    </tbody>
+  </table>
+  </div>
+
+
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>These are my NNI Neighbors</th>
+      </tr>
+    </thead>
+
+	<tbody>
+	{% for nni_neighbor in nni_neighbors %}
+	  <tr>
+        <td>
+          <a href="{% url 'inventory:detail' nni_neighbor.id %}">{{ nni_neighbor.fqdn }}</a>
+        </td>
+      </tr>
+	{% endfor %}
+	</tbody>
+  </table>
+  </div>
+
+
+  <!-- django messages, if there are any -->
+  {% if messages %}
+    {% for message in messages %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <div class="alert alert-info" role="alert">
+    {% endif %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success" role="alert">
+    {% endif %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <div class="alert alert-warning" role="alert">
+    {% endif %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger" role="alert">
+    {% endif %}
+
+      <strong>{{ message }}</strong>
+    </div>
+
+    {% endfor %}
+  {% endif %}
+
+  <!-- controls, actions -->
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>FQDN</th>
+        <th>Audit</th>
+        <th>Audit</th>
+        <th>Audit</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          <a href="{% url 'inventory:detail' ne.id %}">{{ ne.fqdn }}</a>
+        </td>
+        
+        <td>
+          <a class="myclass" href="{% url 'inventory:ne_audit_bogus' ne.id %}">Pigs in Space</a>
+        </td>
+        <td>
+          <a href="{% url 'inventory:ne_audit_lldp' ne.id %}">LLDP</a>
+        </td>
+        <td>
+          <a href="{% url 'inventory:ne_audit_transceivers' ne.id %}">Transceivers</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,185 @@
+'''
+References:
+    https://www.vinta.com.br/blog/2017/how-i-test-my-drf-serializers/
+    https://realpython.com/blog/python/test-driven-development-of-a-django-restful-api/
+'''
+# Core Django imports
+from django.test import TestCase
+from django.db import models
+
+# This project apps imports
+from catalogues.models import Manufacturer
+from .serializers import ManufacturerSerializer
+
+
+class ManufacturerSerializerTests(TestCase):
+
+    def setUp(self):
+        self.manufacturer_attributes = {
+            'name': 'Acme, Inc.',
+            'abbreviation': 'acme'
+        }
+
+        self.serializer_manufacturer_data = {
+            'name': 'La Casa de la Bomba, Inc.',
+            'abbreviation': 'LCDLB'
+        }
+
+        self.manufacturer = Manufacturer.objects.create(**self.manufacturer_attributes)
+        self.serializer_manufacturer = ManufacturerSerializer(instance=self.manufacturer_attributes)
+
+
+    def test_manufacturer_serializer_contains_expected_fields(self):
+        '''
+        The serializer has the exact attributes it is expected to.
+
+        It uses sets to make sure that the output from the serializer has the
+        exact keys I expect it to. Using a set to make this verification is 
+        actually very important because it will guarantee that the addition or
+        removal of any field to the serializer will be noticed by the tests. 
+        Verifying the presence of the field using a series of assertIns would 
+        pick the removal of a field but not additions.
+        '''
+        data = self.serializer_manufacturer.data
+        self.assertEqual(set(data.keys()), set(['name', 'abbreviation']))
+
+
+    def test_manufacturer_name_field_content(self):
+        data = self.serializer_manufacturer.data
+        self.assertEqual(data['name'], self.manufacturer_attributes['name'])
+
+
+    def test_manufacturer_abbreviation_field_content(self):
+        data = self.serializer_manufacturer.data
+        self.assertEqual(data['abbreviation'], self.manufacturer_attributes['abbreviation'])
+
+
+
+# Python standard libraries imports
+import json
+
+# Core Django imports
+from django.test import Client
+client = Client()
+
+# Third-party app imports
+from rest_framework import status
+#from rest_framework.test import APIClient
+#client = APIClient()
+
+from .serializers import ManufacturerSerializer
+
+
+class CRUDManufacturersTest(TestCase):
+#class GetAllManufacturersTest(APITestCase):
+
+    def setUp(self):
+        Manufacturer.objects.create(
+            name = 'Acme, Inc.', abbreviation= 'acme')
+        Manufacturer.objects.create(
+            name = 'La Casa de la Bomba, Inc.', abbreviation = 'LCDLB')
+        Manufacturer.objects.create(
+            name = "Manufacturer 1",
+            abbreviation = "manu1",
+        )
+        m1 = Manufacturer.objects.get(abbreviation = "manu1")
+
+        from django.contrib.auth.models import User
+        user = User.objects.create_superuser(
+            username='admin',
+            password='1234',
+            email='demo@demo.com'
+        )
+        user.save()
+
+    # mark
+    def test_get_all_manufacturers(self):
+        client.login(username='admin', password='1234')
+
+        response = client.get('/api/v1/catalogues/manufacturer/')
+        manufacturers = Manufacturer.objects.all()
+        #print(manufacturers)
+        serializer = ManufacturerSerializer(manufacturers, many=True)
+        #print(serializer)
+
+        #self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_get_one_manufacturer(self):
+        m1 = Manufacturer.objects.get(abbreviation = "manu1")
+        #print(m1.id)
+        client.login(username='admin', password='1234')
+
+        #response = client.get('/api/v1/catalogues/manufacturer/', {'id': str(m1.id)})
+        # FIX THIS!!!!
+        response = client.get('/api/v1/catalogues/manufacturer/' + str(m1.id) +'/')
+        #print(response.data)
+        self.assertEqual(response.data, {'name': 'Manufacturer 1', 'abbreviation': 'manu1'})
+
+        serializer = ManufacturerSerializer(m1)
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+    def test_get_one_manufacturer_invalid(self):
+        client.login(username='admin', password='1234')
+        id = str(777)
+
+        response = client.get('/api/v1/catalogues/manufacturer/' + id +'/')
+        #print(response.data)  # {'detail': 'Not found.'}
+        #print(response.status_code) # 404
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+    def test_create_manufacturer_valid(self):
+        url = '/api/v1/catalogues/manufacturer/'
+        data = {'name': 'Manufacturer X', 'abbreviation': 'manuX'}
+        client.login(username='admin', password='1234')
+
+        response = client.post(url, data, format='json')
+        #print("Below is the response.data")
+        #print(response.data)
+        # response.data is a dictionary of the form {'name': 'Manufacturer X', 'abbreviation': 'manuX'}
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data, data)
+
+
+    def test_create_manufacturer_invalid(self):
+        url = '/api/v1/catalogues/manufacturer/'
+        data = {'name': '', 'abbreviation': 'manuX'}
+        client.login(username='admin', password='1234')
+
+        response = client.post(url, data, format='json')
+        #print("Below is the response.data")
+        #print(response.data)    # {'name': ['This field may not be blank.']}
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+#    def test_update_one_manufacturer_valid(self):
+#        m1 = Manufacturer.objects.get(abbreviation = "manu1")
+#        #print(m1.id)
+#        client.login(username='admin', password='1234')
+#        data = {'name': 'Manufacturer Y', 'abbreviation': 'manuY'}
+#
+#        #response = client.get('/api/v1/catalogues/manufacturer/', {'id': str(m1.id)})
+#        # FIX THIS!!!!
+#        response = client.put(
+#            '/api/v1/catalogues/manufacturer/' + str(m1.id) +'/',
+#            data=json.dumps(data),
+#            content_type='application/json'
+#        )
+#        m = Manufacturer.objects.get(pk=m1.id)
+#        print("This should be the updated m")
+#        print("name: " + m.name + ", abbreviation: " + m.abbreviation)
+#        print("Below is the response.data")
+#        print(response.data)    # {'name': 'Manufacturer Y', 'abbreviation': 'manuY'}
+#        print("Below is the response.status_code")
+#        print(response.status_code)
+#        self.assertEqual(response.status_code, status.HTTP_200_OK)
+#
+#        serializer = ManufacturerSerializer(m)
+#        self.assertEqual(response.data, serializer.data)
+
+
+

@@ -1,0 +1,122 @@
+
+
+  <!--Heading, begin -->
+{% if overall_audit_result %}
+    {% if overall_audit_result == "FAIL" %}
+    <div class="alert alert-danger" role="alert">
+    {% endif %}
+    {% if overall_audit_result == "PASS" %}
+    <div class="alert alert-success" role="alert">
+    {% endif %}
+
+  <!--<div class="alert alert-info">-->
+    <strong><h4 class="text-warning">{{ bodymessage }}</h4></strong>
+    <a href="{% url 'inventory:ne_list' %}">Back to Inventory</a>
+    <p></p>
+    <a href="{% url 'inventory:detail' ne_id %}">Back to {{ ne_fqdn }}</a>
+    <p>Report timestamp: {{ report_timestamp|date:"l, j M Y H:i"}}</p>
+    <p>Overall Audit Result: {{ overall_audit_result }}</p>
+  </div>
+{% endif %}
+<!-- Heading, end -->
+
+
+
+  <!-- begin, django messages, if there are any -->
+  {% if messages %}
+    {% for message in messages %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <div class="alert alert-info" role="alert">
+    {% endif %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="alert alert-success" role="alert">
+    {% endif %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <div class="alert alert-warning" role="alert">
+    {% endif %}
+
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="alert alert-danger" role="alert">
+    {% endif %}
+
+      <strong>{{ message }}</strong>
+    </div>
+
+    {% endfor %}
+  {% endif %}
+  <!-- end, django messages, if there are any -->
+
+  <!-- begin, Table with results -->
+  {% if report_fail|length > 0%}
+<div class="alert alert-danger" role="alert">
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for l in report_fail %}
+        <tr>
+          <td>{{ l }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}
+  <!-- end, Table with results -->
+
+  <!-- begin, Table with results -->
+  {% if report_warning|length > 0%}
+<div class="alert alert-warning" role="alert">
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for l in report_warning %}
+        <tr>
+          <td>{{ l }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}
+  <!-- end, Table with results -->
+
+  <!-- begin, Table with results -->
+  {% if report_pass|length > 0%}
+<div class="alert alert-success" role="alert">
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for l in report_pass %}
+        <tr>
+          <td>{{ l }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}
+  <!-- end, Table with results -->
+
+
+

@@ -1,0 +1,41 @@
+#this file ALMOST! works, it fails to connect to the database, with:
+#django.db.utils.OperationalError: (2002, "Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)")
+
+# using sample in:
+# https://github.com/gitlabhq/gitlabhq/blob/master/vendor/gitlab-ci-yml/Django.gitlab-ci.yml
+
+image: python:3.5
+
+services:
+  - mysql:5.5
+
+variables:
+  MYSQL_DATABASE: torque_test
+  MYSQL_ROOT_PASSWORD: temp_root_pw
+  LANG: C.UTF-8
+  LC_ALL: C.UTF-8
+  #https://github.com/gitlabhq/gitlabhq/blob/master/vendor/gitlab-ci-yml/Django.gitlab-ci.yml
+  #https://docs.gitlab.com/ce/administration/environment_variables.html
+  #GITLAB_DATABASE_ADAPTER: mysql2
+  #GITLAB_DATABASE_DATABASE: torque_db
+  #GITLAB_DATABASE_USERNAME: root
+  #GITLAB_DATABASE_PASSWORD: pass_torque
+  #GITLAB_DATABASE_HOST: localhost
+  #GITLAB_DATABASE_PORT: 3306
+  #GITLAB_DATABASE_ENCODING: unicode
+  #DATABASE_URL: "mysql2://user_torque:pass_torque@localhost:3306/$MYSQL_DATABASE"
+
+before_script:
+#  - apt-get -qq update
+#  - apt-get -qq install -y python3-dev python3-pip
+  - python3 -V    
+  - pip3 install -r requirements.txt
+  - cd torque
+
+test:
+  variables:
+    #https://github.com/gitlabhq/gitlabhq/blob/master/vendor/gitlab-ci-yml/Django.gitlab-ci.yml
+    #https://docs.gitlab.com/ce/administration/environment_variables.html
+    DATABASE_URL: "mysql2://user_torque:pass_torque@localhost:3306/$MYSQL_DATABASE"
+  script:
+    - python3 manage.py test

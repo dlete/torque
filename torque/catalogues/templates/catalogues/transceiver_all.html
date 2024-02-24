@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="alert alert-info" role="alert">
+  <strong><h4>{{ bodymessage }}</h4></strong>
+</div>
+
+
+<div class="table-responsive" id="mytable">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Part Number</th>
+        <th>Description</th>
+        <th>Form Factor</th>
+        <th>Power budget (dB)</th>
+        <th>Receive, min (dBm)</th>
+        <th>Receive, max (dBm)</th>
+        <th>Encoding string</th>
+        <th>Manufacturer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in transceiver_all %}
+        <tr>
+          <td>
+            {{ t.part_number.part_number }}
+          </td>
+          <td>
+            {{ t.part_number.description }}
+          </td>
+          <td>
+            {{ t.form_factor }}
+          </td>
+          <td>
+            {{ t.powerbudget }}
+          </td>
+          <td>
+            {{ t.receive_min }}
+          </td>
+          <td>
+            {{ t.receive_max }}
+          </td>
+          <td>
+            {{ t.type_code }}
+          </td>
+          <td>
+            {{ t.part_number.manufacturer }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock content %}

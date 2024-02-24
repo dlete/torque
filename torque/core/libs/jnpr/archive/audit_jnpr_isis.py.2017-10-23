@@ -1,0 +1,166 @@
+
+def audit_jnpr_isis(address_ipv4, os_username, os_password, isis_parameters, isis_database):
+    '''
+    TO DO:
+        - change format of outcome to (FAIL/PASS is the first keyword):
+            [FAIL|PASS], IS-IS <test_type>, expected <what_was_expected>, actual <what_has_been_seen>
+        - present circuit-type as P2P instead of 2
+        - authentication is enabled
+        - BFD is enabled
+        - metric is as it should (ref_bandwidth/nominal_bandwidth)
+        - neighbors seen are neighbors expected
+        - no ohter SPF than database expiry. 
+        - size of database is as expected. 
+        - all circuits are p2p
+        - come up with a way to work together with Garwin.
+    '''
+
+    ''' Initialize, empty, the list that this function will return. '''
+    list_report = []
+
+
+    ''' Import junos-eznc base function and open Netconf session.'''
+    from jnpr.junos import Device
+    try:
+        Device.auto_probe = 5
+        device = Device(host=address_ipv4, user=os_username, password=os_password)
+        device.open(gather_facts=True)
+    except Exception as err:
+        list_report.append("WARNING, the following error has happened: " + str(err))
+        return list_report
+
+
+    ''' Retrieve information.'''
+    from jnpr.junos.op.isis import IsisAdjacencyTable
+    isis_table = IsisAdjacencyTable(device).get()
+    #print("Next is isis_table")
+    #print(isis_table)
+
+    # WHY??????????
+    from lxml import etree 
+
+    ####
+    #THIS IS VERY ODD!!!!, HAD TO ADD THESE TWO LINES FOR THE SCRIPT TO WORK. IF THE TEST BELOW IS COMMENTED!!!!!!!
+    isis_level = '2'
+    isis_circuit_type = '2'
+    ####
+
+
+    for isis_parameters in isis_table:
+        #print(isis_parameters.level)
+        #print(isis_parameters.circuit_type)
+
+        ''' TEST, IS-IS Level seen and expected are the same.'''
+        if isis_parameters.level != isis_level:
+           list_report.append("FAIL IS-IS Level check, expected IS-IS Level: " + isis_level + ", " + "actual IS-IS Level: " + isis_parameters.level)
+        else:
+            list_report.append("PASS IS-IS Level check, expected IS-IS Level: " + isis_level + ", " + "actual IS-IS Level: " + isis_parameters.level)
+
+        ''' TEST, IS-IS circuit-type seen and expected are the same.'''
+        if isis_parameters.circuit_type != isis_circuit_type:
+            list_report.append("FAIL IS-IS Circuit Type check, expected IS-IS Circuit Type: " + isis_circuit_type + ", " + "actual IS-IS Circuit Type: " + isis_parameters.circuit_type)
+        else:
+            list_report.append("PASS IS-IS Circuit Type check, expected IS-IS Circuit Type: " + isis_circuit_type + ", " + "actual IS-IS Circuit Type: " + isis_parameters.circuit_type)
+
+        #print(isis_parameters.system_name)  
+
+
+    ''' TEST, IS-IS Level 1 LSP is Zero.'''
+    '''
+    Retrieve the full IS-IS database.
+    Count the number of Level 1 LSP in the database.
+    Verify the number of Level 1 LSP is Zero (0).
+    '''
+
+    #hostname = device.facts['hostname']
+    #print("GATHERING FACTS ABOUT: " + hostname)
+    #model = device.facts['model']
+    #print("Next is device.facts['model']")
+    #print(model)
+    #version = device.facts['version']
+
+
+    #######
+    if device.facts['model'] is None:
+        if "ACX5K" in device.facts['RE0']['model']:
+            #print("we have an ACX5K in hand!!!")
+            ##isis_database = device.rpc.get_isis_database_information()
+            #isis_database = device.rpc.get_isis_database_information({'format':'text'})
+            #print("Next type(isis_database)")
+            #print(type(isis_database))
+            #print("Next isis_database")
+            #print(isis_database)
+            '''
+            The ACX5048 are giving grief and do not return the isis database correctly. 
+            If asked with format json, the ACX will give an error. 
+            If asked with format text, or no format, the type is <class 'lxml.etree._Element'>
+            FOR THE MOMENT THIS IS A BUG, A MISSING FEATURE OF TORQUE
+            '''
+            return list_report
+        #else:
+            #print("We have something that is NOT and ACX5K")
+            #pass
+    #######
+
+    #lsp_count = []
+    isis_database = device.rpc.get_isis_database_information({'format': 'json'})
+    lsp_count_l1 = isis_database['isis-database-information'][0]['isis-database'][0]['lsp-count'][0]['data']
+    #print(lsp_count_l1)
+
+    if lsp_count_l1 != '0':
+        list_report.append("FAIL IS-IS LSDB check, there are L1 LSPs in L1 the LSDB")
+    else:
+        list_report.append("PASS IS-IS LSDB check, there are no L1 LSPs in L1 the LSDB")
+
+    #from pprint import pprint
+    #pprint(isis_database)
+
+    #etree.dump(isis_database)
+    #print(isis_database.findtext("isis-database/lsp-count"))
+
+    device.close()
+    return list_report
+
+'''
+# mark
+# To test this function, uncomment this block
+####  CONSTANTS  ####
+fqdn = 'edge3-testlab.nn.hea.net'
+#nni_neighbors_expected = [ 'edge1-testlab', 'edge88-testlab' ]
+#print(nni_neighbors_expected)
+isis_level = '2'
+isis_circuit_type = '2'
+isis_neighbors_expected = 'edge1-testlab'
+lsp_count_l1 = '0'
+#lsp_count_l2 = []
+isis_parameters = isis_level, isis_circuit_type, lsp_count_l1 
+isis_database = []
+local_username = 'heanet'
+local_password = 'KqV7X98v!'
+
+
+#fqdn = 'edge1-dcu-spd2.nn.hea.net'
+fqdn = 'edge1-lyit-killybegs.nn.hea.net'
+isis_level = '2'
+isis_circuit_type = '2'
+lsp_count_l1 = '0'
+isis_parameters = isis_level, isis_circuit_type, lsp_count_l1
+isis_database = []
+local_username = 'rancid'
+local_password = '#pW5MV4G!q%3341sfsdFSS!@'
+####  CONSTANTS  ####
+import os 
+import sys
+import socket
+
+try:
+    address_ip = (socket.gethostbyname(fqdn))
+except:
+    exit(0)
+    e = sys.exc_info()[0]
+    print(e)
+
+report_juniper_isis = audit_jnpr_isis(address_ip, local_username, local_password, isis_parameters, isis_database)
+for l in report_juniper_isis:
+    print(l)
+'''

@@ -1,0 +1,26 @@
+
+table with fqdn
+table with constants
+table with transceivers part numbers
+
+fix bug
+[Mon Sep 25 16:12:35.421642 2017] [wsgi:error] [pid 1306] [remote 192.168.56.1:50737] django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '('/')' from 'url('/')'
+in apache2 error log and also as django exception mailed to admins
+- could it be that the solution is changing from:
+<link rel="icon" href="{% static "assets/img/circulo_naranja.png" %}" />
+to 
+<link rel="icon" href="{% static "assets/img/circulo_naranja.png" %}">
+
+clean Python packages (pip list)
+- remove graphviz?
+- remove httpie?
+- remove Pygments?
+
+
+fix browser error for HTTP 504, The gateway did not receive a timely response from the upstream server or application.
+- could it be that the solution is changing in apache2.conf
+#
+# Timeout: The number of seconds before receives and sends time out.
+#
+Timeout 300
+

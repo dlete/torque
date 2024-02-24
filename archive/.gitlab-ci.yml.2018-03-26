@@ -1,0 +1,35 @@
+# using sample in:
+# https://github.com/gitlabhq/gitlabhq/blob/master/vendor/gitlab-ci-yml/Django.gitlab-ci.yml
+# references:
+# https://github.com/gitlabhq/gitlabhq/blob/master/vendor/gitlab-ci-yml/Django.gitlab-ci.yml
+# https://docs.gitlab.com/ce/administration/environment_variables.html
+
+image: ubuntu:14.04
+
+services:
+  - mysql:5.5
+
+variables:
+  MYSQL_DATABASE: torque_test
+  MYSQL_ROOT_PASSWORD: temp_root_pw
+  LANG: C.UTF-8
+  LC_ALL: C.UTF-8
+
+before_script:
+  - apt-get -qq update
+  - apt-get -qq install -y python3-dev python3-pip 
+  - apt-get -qq install -y mysql-server libmysqlclient-dev
+  - apt-get -qq install -y build-essential libssl-dev libffi-dev python-dev
+  - apt-get -qq install -y libxml2-dev libxslt1-dev 
+  - python3 -V    
+  - pip3 install -r requirements.txt
+  - cd torque
+
+test:
+  #variables:
+  #  DATABASE_URL: "mysql2://root:temp_root_pw@localhost:3306/$MYSQL_DATABASE"
+  script:
+    # until fix the connection error to wanting to use the socket
+    #- python3 manage.py test
+    - python3 -V
+    - python3 manage.py test --settings=torque.settings_for_gitlab_ci

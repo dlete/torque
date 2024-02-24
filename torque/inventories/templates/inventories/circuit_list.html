@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="alert alert-info" role="alert">
+  <strong><h4>{{ bodymessage }}</h4></strong>
+</div>
+
+
+<div class="table-responsive" id="mytable">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Circuit ID</th>
+        <th>Supplier</th>
+        <th>A end description</th>
+        <th>B end description</th>
+        <th>Type</th>
+        <th>Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in circuit_list %}
+        <tr>
+          <td>
+            {{ c.circuit_id }}
+          </td>
+          <td>
+            {{ c.supplier }}
+          </td>
+          <td>
+            {{ c.a_end_description }}
+          </td>
+          <td>
+            {{ c.b_end_description }}
+          </td>
+          <td>
+            {{ c.circuit_type }}
+          </td>
+          <td>
+            {{ c.circuit_info }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="alert alert-info" role="alert">
+  <h3>Features</h3>
+  <p>{{ bodymessage }}</p>
+</div>
+
+
+<p></p>
+<h5>Chassis Alarms</h5>
+<ul class="list-group">
+  <li class="list-group-item">There are zero (0) active chassis alarms</li>
+</ul>
+
+<p></p>
+<h5>Commands and Files</h5>
+<ul class="list-group">
+  <li class="list-group-item">There are no occurrences of commands that should not be in the NE.</li>
+  <li class="list-group-item">Commands that should be in the NE are present.</li>
+  <li class="list-group-item">Files that should not be in the NE are not present.</li>
+  <li class="list-group-item">Files that should be in the NE are present.</li>
+</ul>
+
+<p></p>
+<h5>Physical Port</h5>
+<ul class="list-group">
+  <li class="list-group-item">For each port, if it is Operationally up it must have a description.</li>
+  <li class="list-group-item">For each port, description MUST contain either of the keywords NN or UN.</li>
+  <li class="list-group-item">For each port, on rx, input errors are zero.</li>
+  <li class="list-group-item">For each port, on rx, drop errors are zero.</li>
+  <li class="list-group-item">For each port, on rx, frame errors are zero.</li>
+  <li class="list-group-item">For each port, on rx, runt errors are zero.</li>
+  <li class="list-group-item">For each port, on rx, discard errors are zero.</li>
+  <li class="list-group-item">For each port, on rx, FIFO errors are zero.</li>
+  <li class="list-group-item">For each port, on rx, resource errors are zero.</li>
+  <li class="list-group-item">For each port, on tx, drop errors are zero.</li>
+  <li class="list-group-item">For each port, on tx, aged errors are zero.</li>
+  <li class="list-group-item">For each port, on tx, FIFO errors are zero.</li>
+  <li class="list-group-item">For each port, on tx, MTU errors are zero.</li>
+  <li class="list-group-item">For each port, on tx, resource errors are zero.</li>
+  <li class="list-group-item">For each port, statistics counters have been running for longer than 7 days.</li>
+</ul>
+
+<p></p>
+<h5>NNI description</h5>
+<ul class="list-group">
+  <li class="list-group-item">For each NNI port, the interface description must have a circuit id.</li>
+  <li class="list-group-item">There is at least one (1) NNI interface configured.</li>
+</ul>
+
+<p></p>
+<h5>Transceivers</h5>
+<ul class="list-group">
+  <li class="list-group-item">For each transceiver, it has been correctly encoded.</li>
+  <li class="list-group-item">For each transceiver, Rx power (dBm) is at least a guard value away from the High Warning Threshold".</li>
+  <li class="list-group-item">For each transceiver, Rx power (dBm) is at least a guard value away from the Low Warning Threshold".</li>
+  <li class="list-group-item">For each transceiver, Tx power (dBm) is at least a guard value away from the High Warning Threshold".</li>
+  <li class="list-group-item">For each transceiver, Tx power (dBm) is at least a guard value away from the Low Warning Threshold".</li>
+  <li class="list-group-item">For each transceiver, its Temperature (Celsius) is at least a guard value away from the High Warning Threshold".</li>
+  <li class="list-group-item">For each transceiver, its Temperature (Celsius) is at least a guard value away from the Low Warning Threshold".</li>
+</ul>
+
+<p></p>
+<h5>Operating System</h5>
+<ul class="list-group">
+  <li class="list-group-item">The operating system installed is the one that should have been installed. Each hardware family has its own reference operating system.</li>
+</ul>
+
+<p></p>
+<h5>LLDP</h5>
+<ul class="list-group">
+  <li class="list-group-item">The NUMBER of LLDP neighbors seen and expected are the same.</li>
+  <li class="list-group-item">The EXPECTED LLDP neighbors are actually seen.</li>
+  <li class="list-group-item">The SEEN LLDP neighbors were actually expected.</li>
+</ul>
+
+<p></p>
+<h5>IP, duplicate</h5>
+<ul class="list-group">
+  <li class="list-group-item">The IP (both IPv4 and IPv6) addresses in the NE Loopback and NNI interfaces are not duplicated in the network.</li>
+</ul>
+
+<p></p>
+<h5>IS-IS</h5>
+<ul class="list-group">
+  <li class="list-group-item">All circuits are Level 2.</li>
+  <li class="list-group-item">All circuits are Point to Point.</li>
+  <li class="list-group-item">LSDB does have Zero (0) Level 1 LSP.</li>
+  <li class="list-group-item">For each IS-IS adjancency, that the adjacency has been stable, up that is, for a given time period (e.g. 5 days).</li>
+</ul>
+
+<p></p>
+<h5>BGP</h5>
+<ul class="list-group">
+  <li class="list-group-item">The NUMBER of iBGP peers seen and expected are the same.</li>
+  <li class="list-group-item">The EXPECTED iBGP peers are actually seen.</li>
+  <li class="list-group-item">The SEEN iBGP peers were actually expected.</li>
+  <li class="list-group-item">For each iBGP peer, Authentication is enabled.</li>
+  <li class="list-group-item">For each iBGP peer, the BGP session is in Established status.</li>
+  <li class="list-group-item">For each iBGP peer, the AFI and SAFI are consistent between expected and seen.</li>
+  <li class="list-group-item">For each iBGP peer, the number of IPv4 Unicast prefixes received is consistent with what is expected.</li>
+  <li class="list-group-item">For each iBGP peer, the number of IPv6 Unicast prefixes received is consistent with what is expected.</li>
+  <li class="list-group-item">For each iBGP peer, that the BGP session has been stable, up that is, for a given time period (e.g. 5 days).</li>
+</ul>
+
+
+{% endblock content %}

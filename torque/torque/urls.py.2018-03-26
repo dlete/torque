@@ -1,0 +1,73 @@
+"""torque URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.11/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.conf.urls import url, include
+    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+"""
+
+# Core Django imports
+from django.urls import path
+from django.conf.urls import include, url
+from django.contrib import admin
+
+# Third-party app imports
+from rest_framework_swagger.views import get_swagger_view
+
+# This project apps imports
+#from apiv1 import views
+from audits import views
+from catalogues import views
+from core import views
+from inventories import views
+#from inventory import views
+
+
+schema_view = get_swagger_view(title='Torque API')
+
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-doc/', schema_view),
+
+    #url(r'^audits/', include('audits.urls')),
+    path('audits/', include('audits.urls')),
+
+    #url(r'^api/v1/', include('apiv1.urls', namespace="apiv1")),
+    url(r'^api/v1/', include('apiv1.urls')),
+
+    #url(r'^core/', include('core.urls', namespace="core")),
+    url(r'^core/', include('core.urls')),
+    #url(r'^catalogues/', include('catalogues.urls', namespace="catalogues")),
+    url(r'^catalogues/', include('catalogues.urls')),
+    #url(r'^inventories/', include('inventories.urls', namespace="inventories")),
+    #url(r'^inventories/', include('inventories.urls')),
+    path('inventories/', include('inventories.urls')),
+
+
+    #url(r'^inventory/', include('inventory.urls', namespace="inventory")),
+
+    # https://tutorial.djangogirls.org/en/django_urls/
+    #url(r'', include('inventories.urls')),
+]
+
+
+# This is the landing page.
+# Add URL maps to redirect the base URL to our application.
+# Leave the first parameter of the path function empty to imply '/'.
+# If you write the first parameter as '/' Django will give you the following warning:
+# ?: (urls.W002) Your URL pattern '/' has a route beginning with a '/'.
+# Remove this slash as it is unnecessary.
+from django.views.generic.base import RedirectView
+urlpatterns += [
+    path('', RedirectView.as_view(url='/inventories/', permanent=True)),
+]

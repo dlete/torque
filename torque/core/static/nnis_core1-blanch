@@ -1,0 +1,16 @@
+graph {
+	graph [bgcolor=transparent layout=dot nodesep=4 splines=false]
+	node [color="#07575C" fillcolor="#C4DFE6" fixedsize=true fontcolor="#07575B" fontname=nimbus fontsize=14 penwidth=10 shape=circle style=filled width=2]
+	edge [color="#07575B" len=5 minlen=6 penwidth=10]
+	"core1-blanch" [fillcolor="#66A5AD"]
+	"core1-dcu"
+		"core1-blanch" -- "core1-dcu"
+	"core1-pw"
+		"core1-blanch" -- "core1-pw"
+	"core2-blanch"
+		"core1-blanch" -- "core2-blanch"
+	"dist2-itb"
+		"core1-blanch" -- "dist2-itb"
+	"edge1-blanch"
+		"core1-blanch" -- "edge1-blanch"
+}

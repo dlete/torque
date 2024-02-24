@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="alert alert-info" role="alert">
+  <h3>Known Bugs</h3>
+  <p>{{ bodymessage }}</p>
+</div>
+
+
+<p></p>
+<h5>Bugs</h5>
+<ul class="list-group">
+  <li class="list-group-item">ACX5048, facts do not report the JUNOS version.</li>
+  <li class="list-group-item">ACX5048, goes ballistict if interrogated with {'format': 'json'}, it only behaves with either {'format': 'text'} or nothing (that in fact defaults to 'text' anyway.</li>
+</ul>
+
+
+<p></p>
+<h5>Limitations</h5>
+<ul class="list-group">
+  <li class="list-group-item">Not reading 100G (DWDM or LR4) interfaces Optical values.</li>
+  <li class="list-group-item">ACX5048, do not audit IS-IS LSDB for the moment.</li>
+  <li class="list-group-item">ACX5048, do not audit Chassis Alarms for the moment.</li>
+  <li class="list-group-item">ACX5048, do not audit OS for the moment.</li>
+</ul>
+
+{% endblock content %}

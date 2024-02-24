@@ -1,0 +1,89 @@
+def audit_juniper_chassis_alarms(address_ipv4, os_username, os_password, chassis_alarms):
+    # initialize an empty list, this is what the function will return
+    list_report = []
+
+    from jnpr.junos import Device
+    device = Device(host=address_ipv4, user=os_username, password=os_password)
+    device.open(gather_facts=False)
+
+#    from lxml import etree 
+    
+    # make RPC to show chassis alarms, output in json with pprint below, store in variable
+    chassis_alarms = device.rpc.get_alarm_information({'format': 'json'})
+ 
+    '''
+    1) Example output with no alarms
+     
+    {'alarm-information': [{'alarm-summary': [{'no-active-alarms': [{'data': [None]}]}]}
+
+    2) Example output with alarms
+
+    {'alarm-information': [{'alarm-detail': [{'alarm-class': [{'data': 'Minor'}],
+                                          'alarm-description': [{'data': 'RE1 '
+                                                                         'Voltage '
+                                                                         'Threshold '
+                                                                         'Crossed'}],
+                                          'alarm-short-description': [{'data': 'RE '
+                                                                               'Voltage '
+                                                                               'Threshol'}],
+                                          'alarm-time': [{'attributes': {'junos:seconds': '1500420293'},
+                                                          'data': '2017-07-19 '
+                                                                  '00:24:53 '
+                                                                  'IST'}],
+                                          'alarm-type': [{'data': 'Chassis'}]}],
+                        'alarm-summary': [{'active-alarm-count': [{'data': '1'}]}],
+    '''   
+
+    # take 'alarm summary' json part from above call and store in variable
+    # 'no-active-alarms' vs 'active-alarm-count' 
+    alarm_summary = chassis_alarms['alarm-information'][0]['alarm-summary'][0]
+    
+    # Cycle through possible outcome to access 'data' key for 'alarm-summary. 
+    # None = no alarms, 1 or more = alarms 
+    for item in alarm_summary:
+#        print(alarm_count[item])
+
+        if alarm_summary[item][0]['data'] != '1':
+            list_report.append("PASS, there are no active chassis alarms")
+        else: 
+            list_report.append("FAIL, there is/are" + " " + alarm_summary[item][0]['data'] + " " +  "active chassis alarm(s)")
+            
+            # there are active alarms so store details of alarms
+            alarm_detail = chassis_alarms['alarm-information'][0]['alarm-detail'][0] 
+         
+            # Return alarm details
+            for item in alarm_detail:
+                list_report.append(alarm_detail[item][0]['data'])
+
+#    from pprint import pprint
+#    pprint(chassis_alarms)
+
+    device.close()
+    return list_report
+
+
+# To test this function, uncomment this block
+####  CONSTANTS  ####
+#fqdn = 'edge3-testlab.nn.hea.net'
+#local_username = 'heanet'
+#local_password = 'KqV7X98v!'
+chassis_alarms = []
+fqdn = 'core1-pw.nn.hea.net'
+local_username = 'rancid'
+local_password = '#pW5MV4G!q%3341sfsdFSS!@'
+####  CONSTANTS  ####
+import os 
+import sys
+import socket
+
+try:
+    address_ip = (socket.gethostbyname(fqdn))
+except:
+    exit(0)
+    e = sys.exc_info()[0]
+    print(e)
+
+report_juniper_chassis_alarms = audit_juniper_chassis_alarms(address_ip, local_username, local_password, chassis_alarms)
+for l in report_juniper_chassis_alarms:
+    print(l)
+

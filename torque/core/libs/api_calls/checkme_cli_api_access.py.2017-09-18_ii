@@ -1,0 +1,100 @@
+'''
+http://docs.python-requests.org/en/master/user/authentication/
+'''
+import requests
+
+username = 'admin'
+password = 'Friday13'
+
+# Get the list of all the ne.id
+r = requests.get('http://192.168.56.102:3000/api/v1/inventories/ne/', auth=('admin', 'Friday13'))
+#print("Next is r.status_code")
+#print(r.status_code)
+
+
+'''
+# edge3-testlab.nn.hea.net 448
+base_url = 'http://192.168.56.102:3000/api/v1/audits/ne_bogus/'
+for i in r.json():
+    # We have access to the fqdn and id of each Ne
+    #print(i['fqdn'], i['id'])
+    url = base_url + str(i['id']) + '/'
+    #print(i['fqdn'], i['id'], url)
+
+
+    r = requests.get(url, auth=('admin', 'Friday13'))
+    audit_report_dict = r.json()
+    #print("Next is audit_report_dict['bodymessage']")
+    print(audit_report_dict['bodymessage'])
+    if audit_report_dict['overall_audit_result'] == 'FAIL':
+        print("overall is a FAIL")
+'''
+
+# http://www.pythonforbeginners.com/google/sending-emails-using-google
+import smtplib
+
+#fromaddr = 'torque@presto.heanet.ie'
+#fromaddr = 'torque_app@heanet.ie'
+fromaddr = 'dlete@heanet.ie'
+toaddrs  = ['daniel.lete@heanet.ie', 'daniel.lete@gmail.com']
+
+#msg = 'This is the message'
+msg = """From: <torque@presto.heanet.ie@example.com>
+To: <daniel.lete@heanet.ie>
+Subject: foo
+
+This is a test email 
+"""
+
+server = smtplib.SMTP('smtp.heanet.ie', 587)
+server.set_debuglevel(True) # show communication with the server
+server.starttls()
+server.login('torque_app', 'Fai4ohai!ph4wah9')
+#server.login('dlete', 'Welcome20')
+server.sendmail(fromaddr, toaddrs, msg)
+
+server.quit()
+
+
+'''
+r = requests.get('http://192.168.56.102:3000/api/v1/audits/ne_bogus/448/', auth=('admin', 'Friday13'))
+print("Next is r.json()")
+print(r.json())
+print("Next is type(r.json())")
+print( type(r.json()) )         # <class 'dict'>
+
+print(r.json()['bodymessage'])
+audit_report_dict = r.json()
+
+print("Next is audit_report_dict['bodymessage']")
+print(audit_report_dict['bodymessage'])
+if audit_report_dict['overall_audit_result'] == 'FAIL':
+    print("overall is a FAIL")
+    print(audit_report_dict['report_fail'])
+'''
+
+
+'''
+for k, v in r.json().items():
+    #print("This is the key: " + k + ", and this is the value: " + str(v))
+    if k == 'bodymessage':
+        print(v)
+    if k == 'overall_audit_result':
+        print(v)
+'''
+
+#print("Next is audit_report_dict")
+#print(audit_report_dict)
+#print("Next is type(audit_report_dict)")
+#print(type(audit_report_dict))      # <class 'dict_items'>
+
+#print(audit_report_dict['bodymessage'])
+#print(audit_report_dict['overall_audit_result'])
+#if audit_report_dict['overall_audit_result'] == 'FAIL':
+#    print("overall is a FAIL")
+
+
+#print("Next is r.json()[0]")
+#print(r.json()[0])
+#print("Next is type(r.json()[0])")
+#print(type(r.json()[0]))
